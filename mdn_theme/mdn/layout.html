@@ -161,6 +161,16 @@
                         </div>
                       </div>
                       {% block body %}{% endblock %}
+                      {%- if next or prev %}
+                          <p style="text-align: right;">
+                              {%- if prev %}
+                                  <span style="float: left;"><a rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}">&laquo; previous</a></span>
+                              {%- endif %}
+                              {%- if next %}
+                                  <a rel="next" title="{{ next.title|striptags|e }}" href="{{ next.link|e }}">next &raquo;</a>
+                              {%- endif %}
+                          </p>
+                      {%- endif %}
                   </div>
               </article>
           </div>
