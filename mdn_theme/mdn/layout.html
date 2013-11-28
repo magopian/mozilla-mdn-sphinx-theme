@@ -1,4 +1,14 @@
-<!DOCTYPE html><html dir="ltr" id="developer-mozilla-org" lang="en-US" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://ogp.me/ns#"><head>
+<!DOCTYPE html>
+
+{%- macro css() %}
+    <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
+    {%- for cssfile in css_files %}
+    <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
+    {%- endfor %}
+{%- endmacro %}
+
+<html dir="ltr" id="developer-mozilla-org" lang="en-US" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://ogp.me/ns#"><head>
     <title>{{ docstitle|e }} &mdash; MDN</title>
 
   <meta charset="utf-8">
@@ -52,6 +62,7 @@
 <link href="https://developer.mozilla.org/media/css/jqueryui/moz-jquery-plugins.css" media="screen,projection,tv" rel="stylesheet"></link>
 <link href="https://developer.mozilla.org/media/css/sphinx.css" media="screen,projection,tv" rel="stylesheet"></link>
 
+    {{ css() }}
 
   </head>
 
