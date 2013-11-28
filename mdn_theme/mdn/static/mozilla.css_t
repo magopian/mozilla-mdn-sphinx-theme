@@ -17,3 +17,11 @@ a.headerlink:hover {
 .page-content dl dt:hover .headerlink {
     display: inline-block;
 }
+
+#search-results .highlighted {
+    background-color: rgb(251, 229, 78);
+}
+
+#content .highlight {
+    background: inherit;
+}

@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 
+{%- macro script() %}
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '{{ url_root }}',
+        VERSION:     '{{ release|e }}',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '{{ '' if no_search_suffix else file_suffix }}',
+        HAS_SOURCE:  {{ has_source|lower }}
+      };
+    </script>
+    {%- for scriptfile in script_files %}
+        {%- if 'jquery' not in scriptfile.lower() %}
+            {# jquery is already loaded in the footer #}
+            <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+        {% endif %}
+    {%- endfor %}
+{%- endmacro %}
+
 {%- macro css() %}
     <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
     <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
@@ -135,7 +153,11 @@
           </ul>
         </nav>
 
-
+      <form id="site-search" action="{{ pathto('search') }}" method="get" style="display: none">
+        <p>
+          <input id="q" type="search" name="q" placeholder="{{ _('Search this documentation') }}" role="search" />
+        </p>
+      </form>
 
       <a href="//www.mozilla.org/" id="tabzilla">mozilla</a>
     </div>
@@ -241,6 +263,10 @@
 
 <script async src="https://developer.mozilla.org/en-US/waffles.js" type="text/javascript"></script>
 
+{% block javascript %}
+    {{ script() }}
+    <script type="text/javascript">$('#site-search').show();</script>
+{% endblock javascript %}
 
 
 
